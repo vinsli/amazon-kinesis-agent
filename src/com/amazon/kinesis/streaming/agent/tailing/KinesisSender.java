@@ -134,7 +134,7 @@ public class KinesisSender extends AbstractSender<KinesisRecord> {
                 metrics.addData(BYTES_SENT_METRIC, totalBytesSent, StandardUnit.Bytes);
                 int failedRecordCount = requestRecords.size() - sentRecords.size();
                 metrics.addCount(RECORD_ERRORS_METRIC, failedRecordCount);
-                logger.debug("{}:{} Records sent to kinesis stream {}: {}. Failed records: {}",
+                logger.error("{}:{} Records sent to kinesis stream {}: {}. Failed records: {}",
                         flow.getId(),
                         buffer,
                         getDestination(),
