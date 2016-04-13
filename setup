@@ -119,9 +119,11 @@ do_uninstall () {
 }
 
 do_build () {
-  download_dependencies
+  echo "do_build"
+
+  # download_dependencies
   
-  ant || fail "Failed to build the Java project"
+  # ant || fail "Failed to build the Java project"
 }
 
 do_install () {
