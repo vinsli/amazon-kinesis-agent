@@ -22,10 +22,7 @@ import com.amazon.kinesis.streaming.agent.processing.interfaces.IJSONPrinter;
 import com.amazon.kinesis.streaming.agent.processing.interfaces.ILogParser;
 import com.amazon.kinesis.streaming.agent.processing.parsers.ApacheLogParser;
 import com.amazon.kinesis.streaming.agent.processing.parsers.SysLogParser;
-import com.amazon.kinesis.streaming.agent.processing.processors.BracketsDataConverter;
-import com.amazon.kinesis.streaming.agent.processing.processors.CSVToJSONDataConverter;
-import com.amazon.kinesis.streaming.agent.processing.processors.LogToJSONDataConverter;
-import com.amazon.kinesis.streaming.agent.processing.processors.SingleLineDataConverter;
+import com.amazon.kinesis.streaming.agent.processing.processors.*;
 
 /**
  * The factory to create: 
@@ -43,7 +40,8 @@ public class ProcessingUtilsFactory {
         SINGLELINE,
         CSVTOJSON,
         LOGTOJSON,
-        ADDBRACKETS
+        ADDBRACKETS,
+        TRIMNEWLINE
     }
     
     public static enum LogFormat {
@@ -119,6 +117,8 @@ public class ProcessingUtilsFactory {
                 return new LogToJSONDataConverter(config);
             case ADDBRACKETS:
                 return new BracketsDataConverter();
+            case TRIMNEWLINE:
+                return new NewLineTrimDataConverter();
             default:
                 throw new ConfigurationException(
                         "Specified option is not implemented yet: " + option);
