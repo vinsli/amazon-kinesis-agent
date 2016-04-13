@@ -119,7 +119,7 @@ public class KinesisSender extends AbstractSender<KinesisRecord> {
                         sentRecords.add(index);
                         totalBytesSent += record.getData().limit();
                     } else {
-                        logger.trace("{}:{} Record {} returned error code {}: {}", flow.getId(), buffer, index, responseEntry.getErrorCode(),
+                        logger.error("{}:{} Record {} returned error code {}: {}", flow.getId(), buffer, index, responseEntry.getErrorCode(),
                                 responseEntry.getErrorMessage());
                         errors.add(responseEntry.getErrorCode());
                     }
